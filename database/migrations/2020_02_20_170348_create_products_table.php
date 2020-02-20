@@ -15,7 +15,14 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
+            $table->string('description', 1000);
+            $table->integer('quantity')->usigned();
+            $table->string('status')->default(Product::PRODUCTO_DISPONIBLE);
+            $table->string('image');
+            $table->string('sellrt_id')->unsigned();
             $table->timestamps();
+            $table->foreign('seller_id')->references('id')->on('users');
         });
     }
 
