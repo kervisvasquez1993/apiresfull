@@ -11,7 +11,7 @@ class Product extends Model
     const PRODUCTO_NO_DISPONIBLE = 'no disponible';
     protected $fillable = [
         'name',
-        'descripcion',
+        'description',
         'quantity',
         'status',
         'image',

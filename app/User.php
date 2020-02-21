@@ -8,11 +8,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use Notifiable;
-    const USUARION_VERIFICADO = '1';
+    const USUARIO_VERIFICADO = '1';
     const USUARIO_NO_VERIFICADO = '0';
 
     const USUARIO_ADMINISTRADOR = 'true';
     const USUARIO_REGULAR = 'false';
+    protected $table = 'users';
 
 
 
