@@ -1,5 +1,10 @@
 <?php
 use App\User;
+use App\Product;
+use App\Category;
+use App\Transactio;
+use App\Seller;
+
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -42,14 +47,14 @@ $factory->define(App\Product::class, function (Faker\Generator $faker) {
         'name' => $faker->word,
         'description' => $faker->unique()->paragraph(1),
         'quantity' => $faker->numberBetween(1,10),
-        'status' => $faker->randomElement([User::PRODUCTO_DISPONIBLE, User::PRODUCTO_NO_DISPONIBLE]),
+        'status' => $faker->randomElement([Product::PRODUCTO_DISPONIBLE, Product::PRODUCTO_NO_DISPONIBLE]),
         'image' => $faker->randomElement(['1.jpg','2.jpg','3.jpg',]),
         'seller_id' => User::all()->random()->id,
     ];
 });
 
 $factory->define(App\Transactio::class, function (Faker\Generator $faker) {
-    $vendedor = Seller::has('products')->get()-random();
+    $vendedor = Seller::has('products')->get()->random();
     $comprador = User::all()->except($vendedor->id)->random();
     return [
       

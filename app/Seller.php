@@ -1,9 +1,6 @@
 <?php
 
 namespace App;
-
-use Illuminate\Database\Eloquent\Model;
-namespace User;
 use App\Product;
 
 class Seller extends User
