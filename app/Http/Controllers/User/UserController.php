@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\User;
 
 class UserController extends Controller
 {
@@ -14,7 +15,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $usuarios = User::all();
+        return $usuarios;
     }
 
     /**
@@ -22,10 +24,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -35,7 +34,24 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /* REGLAS DE VALIDACION SI LOS DATOS SON CORRECTOS*/
+            $reglas = [
+                'name' => 'required',
+                'email' => 'required | email | unique:users',
+                'password' => 'required | min:6 | confirmed'
+            ];
+
+            $this->validate($request, $reglas);
+        /*FIN */
+        $campos = $request->all();
+
+        $campos['password'] = bcrypt( $request->password );
+        $campos['verified'] = User::USUARIO_NO_VERIFICADO;
+        $campos['verification_token'] = User::generarVerificationToken();
+        $campos['admin'] = User::USUARIO_REGULAR;
+        $usuario = User::create($campos);
+        return  response()->json(['data' => $usuario], 201);
+
     }
 
     /**
@@ -46,7 +62,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+            $usuario = User::findOrFail($id); // retorna una execcion si no encuentra el usuario
+            return  response()->json(['data' => $usuario], 200);
     }
 
     /**
@@ -55,10 +72,6 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
