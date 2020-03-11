@@ -32,6 +32,7 @@ class User extends Authenticatable
         'verification_token',
         'admin',
     ];
+   
 
     /**
      * The attributes that should be hidden for arrays.
@@ -46,7 +47,7 @@ class User extends Authenticatable
 
     public  function esVerificado()
     {
-        return $this->verified == User::USUARION_VERIFICADO;
+        return $this->verified == User::USUARIO_VERIFICADO;
 
     }
     public function esAdministrador()
