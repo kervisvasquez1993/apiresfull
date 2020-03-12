@@ -1,7 +1,7 @@
 <?php
 namespace App\Traits;
-use Cassandra\Collection;
-
+use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
 trait ApiResponser
 {
     private function successResponse($data, $code)

@@ -18,14 +18,14 @@ class BuyerController extends ApiController
     public function index()
     {
         $comprador = Buyer::has('transactions')->get();  //has recibe una relacion que tenga el modelo
-        return response()->json(['data' => $comprador], 200);
+        return $this->showAll($comprador);
     }
 
 
     public function show($id)
     {
         $comprador = Buyer::has('transactions')->findOrFail($id);
-        return  response()->json(['data' => $comprador], 200);
+        return  $this->showOne($comprador);
     }
 
 

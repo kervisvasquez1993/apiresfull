@@ -16,14 +16,14 @@ class SellerController extends ApiController
     public function index()
     {
         $vendedor = Seller::has('products')->get();  //has recibe una relacion que tenga el modelo
-        return response()->json(['data' => $vendedor], 200);
+        return $this->showAll($vendedor);
     }
 
 
     public function show($id)
     {
         $vendedor = Seller::has('products')->findOrFail($id);
-        return  response()->json(['data' => $vendedor], 200);
+        return  $this->showOne($vendedor);
     }
 
 }
