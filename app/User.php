@@ -32,7 +32,18 @@ class User extends Authenticatable
         'verification_token',
         'admin',
     ];
-   
+/* mutador son funciones publicas que comienzan por set  */
+    public function setNameAttribute($valor){
+        $this->attributes['name'] = strtolower($valor);
+    }
+/*accesor para el nombre  obtener el valor de ese atributo*/
+    public function getNameAttribute($valor){
+            return ucfirst($valor);
+    }
+
+    public function setEmailAttribute($valor){
+        $this->attributes['email'] = strtolower($valor);
+    }
 
     /**
      * The attributes that should be hidden for arrays.

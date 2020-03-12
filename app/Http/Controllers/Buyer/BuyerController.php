@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Buyer;
 
 use App\Buyer;
+use App\Http\Controllers\ApiController;
 use App\Transactio;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class BuyerController extends Controller
+
+class BuyerController extends ApiController
 {
     /**
      * Display a listing of the resource.
